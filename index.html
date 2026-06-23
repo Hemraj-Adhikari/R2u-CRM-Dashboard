@@ -4,289 +4,1231 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Route 2 Uni — Dashboard</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Lora:ital,wght@0,500;1,500&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root{
-    --ink:#101A2E;
-    --ink-soft:#5B6478;
-    --paper:#FBF8F1;
-    --card:#FFFFFF;
-    --line:#E5DCC4;
-    --gold:#C28E3A;
-    --gold-deep:#8F6321;
-    --gold-tint:#F4E8D2;
-    --stamp:#A8472F;
-    --stamp-tint:#F6E2DC;
-    --gate:#2F6F52;
-    --gate-tint:#E1EEE6;
-  }
+:root {
+  --ink: #0C1220;
+  --ink-mid: #3A4255;
+  --ink-soft: #78859C;
+  --ink-faint: #B0BAC9;
+  --surface: #F4F2EC;
+  --card: #FFFFFF;
+  --line: #E8E2D6;
+  --line-soft: #F0EBE2;
 
-  body{ font-family:'Inter', sans-serif; background:var(--paper); color:var(--ink); }
-  .font-display{ font-family:'Fraunces', serif; }
-  .font-mono{ font-family:'JetBrains Mono', monospace; }
+  --gold: #A97828;
+  --gold-mid: #C9962F;
+  --gold-light: #E8C06A;
+  --gold-bg: #FDF7EC;
+  --gold-border: #E5D09C;
 
-  /* hairline perforation */
-  .perforated{
-    background-image: radial-gradient(circle, var(--paper) 2px, transparent 2.5px);
-    background-size: 14px 2px;
-    background-repeat: repeat-x;
-    background-position: bottom;
-  }
+  --green: #1A5E3C;
+  --green-mid: #27865A;
+  --green-bg: #EAF4EE;
+  --green-border: #9ECDB5;
 
-  /* boarding-pass stub cards */
-  .ticket-card{ overflow: visible; }
-  .ticket-stub{ width:4.25rem; }
-  .stub-label{
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    letter-spacing: .12em;
-    font-size: .62rem;
-  }
-  .notch{
-    position:absolute;
-    width:15px; height:15px;
-    border-radius:50%;
-    background:var(--paper);
-    left:calc(100% - 4.25rem - 7.5px);
-    border:1px solid var(--line);
-  }
-  .notch-top{ top:-8px; }
-  .notch-bottom{ bottom:-8px; }
+  --red: #8C2E1A;
+  --red-bg: #FAF0EE;
+  --red-border: #DCAA9E;
 
-  /* route line for pipeline */
-  .route-line{
-    position:absolute;
-    top:21px; left:5%; right:5%;
-    height:0;
-    border-top:2px dashed var(--line);
-    z-index:0;
-  }
-  .gate-marker{
-    width:44px; height:44px;
-    border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-family:'JetBrains Mono', monospace;
-    font-weight:700;
-    border:2px solid;
-    position:relative; z-index:1;
-    background:var(--card);
-  }
+  --blue: #163F78;
+  --blue-bg: #EBF1FA;
+  --blue-border: #9CBDE6;
 
-  .leader{
-    background-image: radial-gradient(circle, var(--ink-soft) 1px, transparent 1.2px);
-    background-size: 6px 2px;
-    background-repeat: repeat-x;
-    background-position: bottom 4px left;
-    flex:1;
-    margin: 0 .5rem;
-  }
+  --sb: #0C1220;
+  --sb-border: rgba(255,255,255,0.06);
+  --sb-text: #8A96AD;
+  --sb-accent: #C9962F;
 
-  ::selection{ background: var(--gold-tint); }
+  --r: 16px;
+  --r-sm: 10px;
+  --r-pill: 999px;
+
+  --shadow-sm: 0 1px 4px rgba(12,18,32,0.06), 0 0 0 1px rgba(12,18,32,0.04);
+  --shadow-md: 0 4px 16px rgba(12,18,32,0.08), 0 1px 3px rgba(12,18,32,0.06);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  font-size: 13.5px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════
+   SIDEBAR
+══════════════════════════════ */
+aside {
+  width: 252px;
+  min-width: 252px;
+  background: var(--sb);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 20;
+}
+
+.sb-logo {
+  padding: 28px 22px 22px;
+  border-bottom: 1px solid var(--sb-border);
+}
+
+.sb-logo-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sb-logo-mark {
+  width: 40px; height: 40px;
+  background: var(--sb-accent);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: #0C1220;
+  font-size: 16px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.sb-logo-mark::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 13px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.sb-logo-text h1 {
+  font-family: 'Lora', serif;
+  font-size: 17px;
+  color: #FFFFFF;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+
+.sb-logo-text p {
+  font-size: 9.5px;
+  color: rgba(138,150,173,0.7);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+nav { padding: 14px 12px; flex: 1; overflow-y: auto; }
+
+.nav-group { margin-bottom: 6px; }
+
+.nav-label {
+  font-size: 9.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(138,150,173,0.45);
+  padding: 12px 10px 5px;
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 11px;
+  border-radius: 9px;
+  font-size: 13.5px;
+  color: var(--sb-text);
+  text-decoration: none;
+  transition: all 0.15s;
+  margin-bottom: 1px;
+  font-weight: 400;
+  position: relative;
+}
+
+nav a .nav-icon {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  background: transparent;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+nav a:hover { color: rgba(255,255,255,0.85); }
+nav a:hover .nav-icon { background: rgba(255,255,255,0.07); }
+
+nav a.active {
+  color: #FFFFFF;
+  background: rgba(201,150,47,0.14);
+}
+nav a.active .nav-icon {
+  background: rgba(201,150,47,0.2);
+  color: var(--sb-accent);
+}
+
+.nav-badge {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 600;
+  background: rgba(201,150,47,0.2);
+  color: var(--sb-accent);
+  padding: 1px 7px;
+  border-radius: 999px;
+}
+
+.sb-divider {
+  height: 1px;
+  background: var(--sb-border);
+  margin: 8px 12px;
+}
+
+.sb-user {
+  padding: 16px 18px;
+  border-top: 1px solid var(--sb-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sb-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #C9962F 0%, #8F6320 100%);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  border: 1.5px solid rgba(255,255,255,0.12);
+}
+
+.sb-user-info h4 { font-size: 13px; font-weight: 500; color: #FFFFFF; }
+.sb-user-info p { font-size: 11px; color: var(--sb-text); margin-top: 1px; }
+
+.sb-user-action {
+  margin-left: auto;
+  color: rgba(138,150,173,0.4);
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.sb-user-action:hover { color: var(--sb-text); }
+
+/* ══════════════════════════════
+   MAIN
+══════════════════════════════ */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* ── HEADER ── */
+.topbar {
+  background: var(--card);
+  padding: 0 36px;
+  height: 64px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topbar-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+}
+
+.topbar-breadcrumb .crumb-home {
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.topbar-breadcrumb .crumb-sep {
+  color: var(--ink-faint);
+  font-size: 10px;
+}
+
+.topbar-breadcrumb .crumb-active {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 7px 13px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  width: 200px;
+  cursor: text;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.topbar-search:hover {
+  border-color: var(--gold-border);
+  background: var(--gold-bg);
+}
+
+.topbar-search i { font-size: 11px; }
+
+.topbar-search kbd {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--ink-faint);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.btn-icon {
+  width: 36px; height: 36px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  background: var(--card);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+  font-size: 13px;
+}
+
+.btn-icon:hover { border-color: var(--gold-border); color: var(--ink); background: var(--gold-bg); }
+
+.notif-pip {
+  position: absolute;
+  top: 7px; right: 7px;
+  width: 6px; height: 6px;
+  background: var(--red);
+  border-radius: 50%;
+  border: 1.5px solid var(--card);
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  background: var(--ink);
+  border: none;
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  font-weight: 500;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-decoration: none;
+}
+
+.btn-primary:hover { background: var(--ink-mid); }
+.btn-primary i { font-size: 11px; opacity: 0.7; }
+
+/* ── CONTENT ── */
+.content {
+  padding: 32px 36px 52px;
+  max-width: 1520px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ── PAGE TITLE ROW ── */
+.page-title-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.page-title-group { display: flex; flex-direction: column; gap: 4px; }
+
+.page-eyebrow {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+}
+
+.page-title {
+  font-family: 'Lora', serif;
+  font-size: 26px;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.page-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.live-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--green);
+  background: var(--green-bg);
+  border: 1px solid var(--green-border);
+  padding: 5px 11px;
+  border-radius: var(--r-pill);
+  letter-spacing: 0.04em;
+}
+
+.live-dot {
+  width: 6px; height: 6px;
+  background: var(--green-mid);
+  border-radius: 50%;
+  animation: blink 2.4s ease-in-out infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
+
+.date-chip {
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+/* ── KPI GRID ── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.kpi {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 22px 22px 20px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: default;
+}
+
+.kpi:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.kpi-accent-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: var(--r) var(--r) 0 0;
+}
+
+.kpi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.kpi-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
+.kpi-icon {
+  width: 32px; height: 32px;
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.kpi-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.kpi-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--r-pill);
+  letter-spacing: 0.02em;
+}
+
+.pill-up { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.pill-down { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.pill-neutral { background: var(--surface); color: var(--ink-soft); border: 1px solid var(--line); }
+
+.kpi-trend-line {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 24px;
+}
+
+.kpi-trend-line span {
+  width: 4px;
+  border-radius: 2px;
+  display: block;
+  opacity: 0.55;
+  background: currentColor;
+  transition: opacity 0.2s;
+}
+
+.kpi:hover .kpi-trend-line span { opacity: 0.85; }
+
+/* progress bar */
+.mini-progress { height: 4px; background: var(--line-soft); border-radius: 99px; overflow: hidden; margin-top: 12px; }
+.mini-progress-fill { height: 100%; border-radius: 99px; }
+
+/* color variants */
+.c-gold .kpi-accent-bar { background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%); }
+.c-gold .kpi-icon { background: var(--gold-bg); color: var(--gold); }
+.c-gold .kpi-trend-line { color: var(--gold-mid); }
+.c-gold .mini-progress-fill { background: var(--gold-mid); }
+
+.c-green .kpi-accent-bar { background: linear-gradient(90deg, var(--green) 0%, var(--green-mid) 100%); }
+.c-green .kpi-icon { background: var(--green-bg); color: var(--green); }
+.c-green .kpi-num { color: var(--green); }
+.c-green .kpi-trend-line { color: var(--green-mid); }
+
+.c-red .kpi-accent-bar { background: linear-gradient(90deg, var(--red) 0%, #C05030 100%); }
+.c-red .kpi-icon { background: var(--red-bg); color: var(--red); }
+.c-red .kpi-trend-line { color: #C05030; }
+
+.c-blue .kpi-accent-bar { background: linear-gradient(90deg, var(--blue) 0%, #2A6AC0 100%); }
+.c-blue .kpi-icon { background: var(--blue-bg); color: var(--blue); }
+.c-blue .kpi-trend-line { color: #2A6AC0; }
+
+/* ── MAIN LOWER GRID ── */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 340px;
+  gap: 18px;
+  align-items: start;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 24px;
+}
+
+.panel-hd {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.panel-title {
+  font-family: 'Lora', serif;
+  font-size: 17px;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.panel-sub {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+.panel-action {
+  font-size: 11.5px;
+  color: var(--gold);
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.panel-action:hover { background: var(--gold-bg); }
+
+/* ── PIPELINE ── */
+.pipeline-wrap {
+  position: relative;
+  margin: 6px 0 28px;
+}
+
+.pipeline-rail {
+  position: absolute;
+  top: 27px;
+  left: 27px; right: 27px;
+  height: 2px;
+  background: var(--line);
+  border-radius: 2px;
+  z-index: 0;
+}
+
+.pipeline-progress {
+  height: 100%;
+  width: 78%;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+  border-radius: 2px;
+}
+
+.pipeline-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  z-index: 1;
+}
+
+.p-step { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+.p-bubble {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 17px;
+  font-weight: 700;
+  background: var(--card);
+  position: relative;
+  border: 2px solid var(--line);
+  color: var(--ink-soft);
+  transition: box-shadow 0.2s;
+}
+
+.p-bubble.done {
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 0 4px var(--gold-bg);
+}
+
+.p-bubble.active {
+  border-color: var(--green);
+  color: var(--green);
+  background: var(--green-bg);
+  box-shadow: 0 0 0 4px rgba(26,94,60,0.1);
+}
+
+.p-bubble.pending {
+  border-color: var(--red-border);
+  color: var(--red);
+}
+
+.p-label {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-align: center;
+  line-height: 1.35;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.p-label.done-lbl { color: var(--gold); font-weight: 600; }
+.p-label.active-lbl { color: var(--green); font-weight: 600; }
+
+/* ── UNI TABLE ── */
+.uni-table { width: 100%; }
+
+.uni-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.uni-row:last-child { border-bottom: none; }
+
+.uni-rank {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-faint);
+  width: 18px;
+  flex-shrink: 0;
+}
+
+.uni-info { flex: 1; min-width: 0; }
+.uni-name { font-size: 13px; font-weight: 500; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.uni-apps { font-size: 11px; color: var(--ink-soft); margin-top: 1px; }
+
+.uni-bar-wrap { width: 80px; height: 4px; background: var(--line-soft); border-radius: 99px; overflow: hidden; flex-shrink: 0; }
+.uni-bar { height: 100%; background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%); border-radius: 99px; }
+
+.uni-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  width: 28px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ── FINANCE ── */
+.fin-stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.fin-stat:last-child { border-bottom: none; }
+
+.fin-stat-left {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.fin-ico {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  background: var(--gold-bg);
+  border: 1px solid var(--gold-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.fin-lbl { font-size: 13px; color: var(--ink-mid); font-weight: 400; }
+.fin-sub { font-size: 11px; color: var(--ink-soft); margin-top: 1px; }
+
+.fin-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.fin-val.up { color: var(--green); }
+
+.fin-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fin-footer-txt {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+}
+
+.fy-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--gold);
+  background: var(--gold-bg);
+  border: 1px solid var(--gold-border);
+  padding: 3px 9px;
+  border-radius: var(--r-pill);
+}
+
+/* ── ACTIVITY ── */
+.act-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.act-item:last-child { border-bottom: none; }
+
+.act-icon-wrap {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.act-icon-wrap.green { background: var(--green-bg); color: var(--green); }
+.act-icon-wrap.gold { background: var(--gold-bg); color: var(--gold); }
+.act-icon-wrap.blue { background: var(--blue-bg); color: var(--blue); }
+.act-icon-wrap.red { background: var(--red-bg); color: var(--red); }
+
+.act-text { font-size: 13px; color: var(--ink-mid); line-height: 1.45; }
+.act-text strong { color: var(--ink); font-weight: 600; }
+.act-time { font-size: 11px; color: var(--ink-faint); margin-top: 2px; }
+
+/* ── SUMMARY STAT ── */
+.sum-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.sum-row:last-child { border-bottom: none; }
+
+.sum-lbl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-mid);
+}
+
+.sum-lbl i { color: var(--ink-faint); font-size: 12px; width: 14px; text-align: center; }
+.sum-val { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; color: var(--ink); }
+
+@media (max-width: 1200px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .main-grid { grid-template-columns: 1fr 340px; }
+}
 </style>
 </head>
-<body class="flex h-screen overflow-hidden">
+<body>
 
-  <!-- SIDEBAR -->
-  <aside class="w-64 bg-[var(--ink)] text-slate-300 flex flex-col justify-between hidden md:flex z-10 shadow-xl">
-    <div>
-      <div class="p-6 border-b border-white/10 flex items-center gap-3">
-        <div class="bg-[var(--gold)] p-2.5 rounded-lg text-[var(--ink)] text-lg leading-none">
-          <i class="fa-solid fa-route"></i>
-        </div>
-        <div>
-          <h1 class="font-display font-semibold text-white text-base leading-tight">Route 2 Uni</h1>
-          <p class="text-[10px] text-slate-400 uppercase tracking-[0.18em]">International Group</p>
-        </div>
-      </div>
-
-      <nav class="p-4 space-y-1 mt-2">
-        <a href="#" class="flex items-center gap-3 border-l-2 border-[var(--gold)] bg-white/[0.06] text-white px-4 py-3 rounded-r-lg font-medium text-sm">
-          <i class="fa-solid fa-chart-pie text-[var(--gold)] w-4 text-center"></i> Dashboard
-        </a>
-        <a href="#" class="flex items-center gap-3 border-l-2 border-transparent hover:border-[var(--gold)]/50 hover:bg-white/[0.04] hover:text-white px-4 py-3 rounded-r-lg text-sm transition-all">
-          <i class="fa-solid fa-user-graduate text-slate-500 w-4 text-center"></i> Students
-        </a>
-        <a href="#" class="flex items-center gap-3 border-l-2 border-transparent hover:border-[var(--gold)]/50 hover:bg-white/[0.04] hover:text-white px-4 py-3 rounded-r-lg text-sm transition-all">
-          <i class="fa-solid fa-building-columns text-slate-500 w-4 text-center"></i> Universities
-        </a>
-        <a href="#" class="flex items-center gap-3 border-l-2 border-transparent hover:border-[var(--gold)]/50 hover:bg-white/[0.04] hover:text-white px-4 py-3 rounded-r-lg text-sm transition-all">
-          <i class="fa-solid fa-users-gear text-slate-500 w-4 text-center"></i> User Management
-        </a>
-        <a href="#" class="flex items-center gap-3 border-l-2 border-transparent hover:border-[var(--gold)]/50 hover:bg-white/[0.04] hover:text-white px-4 py-3 rounded-r-lg text-sm transition-all">
-          <i class="fa-solid fa-handshake text-slate-500 w-4 text-center"></i> Partner Registration
-        </a>
-        <a href="#" class="flex items-center gap-3 border-l-2 border-transparent hover:border-[var(--gold)]/50 hover:bg-white/[0.04] hover:text-white px-4 py-3 rounded-r-lg text-sm transition-all">
-          <i class="fa-solid fa-wallet text-slate-500 w-4 text-center"></i> Finance Section
-        </a>
-      </nav>
-    </div>
-
-    <div class="p-4 border-t border-white/10">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-[var(--gold)] flex items-center justify-center text-[var(--ink)] font-mono font-bold text-sm">SA</div>
-        <div>
-          <h4 class="text-sm font-medium text-white">Super Admin</h4>
-          <p class="text-xs text-slate-500">admin@route2uni.com</p>
-        </div>
+<!-- SIDEBAR -->
+<aside>
+  <div class="sb-logo">
+    <div class="sb-logo-inner">
+      <div class="sb-logo-mark"><i class="fa-solid fa-route"></i></div>
+      <div class="sb-logo-text">
+        <h1>Route 2 Uni</h1>
+        <p>International Group</p>
       </div>
     </div>
-  </aside>
+  </div>
 
-  <!-- MAIN -->
-  <main class="flex-1 flex flex-col overflow-y-auto">
+  <nav>
+    <div class="nav-group">
+      <div class="nav-label">Overview</div>
+      <a href="#" class="active">
+        <div class="nav-icon"><i class="fa-solid fa-chart-pie"></i></div>
+        Dashboard
+        <span class="nav-badge">Live</span>
+      </a>
+    </div>
 
-    <!-- HEADER as boarding-pass strip -->
-    <header class="bg-[var(--card)] px-8 pt-5 pb-4 sticky top-0 z-10 perforated">
-      <div class="flex justify-between items-center">
-        <div>
-          <p class="text-[10px] uppercase tracking-[0.2em] text-[var(--gold-deep)] font-semibold mb-1">Operations Overview</p>
-          <h2 class="font-display text-2xl text-[var(--ink)] italic">Welcome back, Admin</h2>
-          <p class="text-xs text-[var(--ink-soft)] mt-0.5">Today's status across applications, universities and partner routes.</p>
+    <div class="nav-group">
+      <div class="nav-label">Management</div>
+      <a href="#">
+        <div class="nav-icon"><i class="fa-solid fa-user-graduate"></i></div>
+        Students
+      </a>
+      <a href="#">
+        <div class="nav-icon"><i class="fa-solid fa-building-columns"></i></div>
+        Universities
+      </a>
+      <a href="#">
+        <div class="nav-icon"><i class="fa-solid fa-users-gear"></i></div>
+        User Management
+      </a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Operations</div>
+      <a href="#">
+        <div class="nav-icon"><i class="fa-solid fa-handshake"></i></div>
+        Partner Registration
+      </a>
+      <a href="#">
+        <div class="nav-icon"><i class="fa-solid fa-wallet"></i></div>
+        Finance Section
+      </a>
+    </div>
+
+    <div class="sb-divider"></div>
+
+    <div class="nav-group">
+      <a href="#">
+        <div class="nav-icon"><i class="fa-solid fa-gear"></i></div>
+        Settings
+      </a>
+      <a href="#">
+        <div class="nav-icon"><i class="fa-solid fa-circle-question"></i></div>
+        Help &amp; Support
+      </a>
+    </div>
+  </nav>
+
+  <div class="sb-user">
+    <div class="sb-avatar">SA</div>
+    <div class="sb-user-info">
+      <h4>Super Admin</h4>
+      <p>admin@route2uni.com</p>
+    </div>
+    <div class="sb-user-action"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-breadcrumb">
+        <span class="crumb-home"><i class="fa-solid fa-house" style="font-size:11px;"></i></span>
+        <span class="crumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+        <span class="crumb-active">Dashboard</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        Search students, universities…
+        <kbd>⌘K</kbd>
+      </div>
+      <div class="btn-icon" title="Notifications">
+        <i class="fa-solid fa-bell"></i>
+        <span class="notif-pip"></span>
+      </div>
+      <div class="btn-icon" title="Refresh">
+        <i class="fa-solid fa-rotate-right"></i>
+      </div>
+      <a href="#" class="btn-primary">
+        <i class="fa-solid fa-file-arrow-down"></i>
+        Export Report
+      </a>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- PAGE TITLE -->
+    <div class="page-title-row">
+      <div class="page-title-group">
+        <span class="page-eyebrow">Operations Overview</span>
+        <h2 class="page-title">Dashboard</h2>
+      </div>
+      <div class="page-meta">
+        <div class="live-chip"><span class="live-dot"></span> Live</div>
+        <span class="date-chip"><i class="fa-regular fa-calendar" style="margin-right:5px; font-size:11px;"></i>Cohort 2025–26 &nbsp;·&nbsp; 23 June 2026</span>
+      </div>
+    </div>
+
+    <!-- KPI CARDS -->
+    <div class="kpi-grid">
+
+      <div class="kpi c-gold">
+        <div class="kpi-accent-bar"></div>
+        <div class="kpi-header">
+          <span class="kpi-label">Active Students</span>
+          <div class="kpi-icon"><i class="fa-solid fa-user-graduate"></i></div>
         </div>
-        <div class="flex items-center gap-3">
-          <button class="bg-white hover:bg-[var(--gold-tint)] text-[var(--ink)] font-medium text-sm px-4 py-2.5 border border-dashed border-[var(--gold)] rounded-lg transition-all flex items-center gap-2">
-            <i class="fa-solid fa-file-pdf text-[var(--stamp)]"></i> Export PDF
-          </button>
-          <div class="relative bg-[var(--paper)] border border-[var(--line)] p-2.5 rounded-lg text-[var(--ink-soft)] hover:text-[var(--ink)] cursor-pointer">
-            <i class="fa-solid fa-bell"></i>
-            <span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-[var(--stamp)] rounded-full"></span>
+        <div class="kpi-num">113</div>
+        <div class="kpi-footer">
+          <span class="pill pill-up"><i class="fa-solid fa-arrow-trend-up"></i> +12% this month</span>
+          <div class="kpi-trend-line" style="color:var(--gold-mid)">
+            <span style="height:35%"></span><span style="height:50%"></span><span style="height:40%"></span><span style="height:65%"></span><span style="height:55%"></span><span style="height:80%"></span><span style="height:70%"></span><span style="height:100%"></span>
           </div>
         </div>
       </div>
-    </header>
 
-    <div class="p-8 space-y-8 max-w-[1600px] w-full mx-auto">
-
-      <!-- KPI BOARDING-PASS CARDS -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-        <div class="ticket-card relative bg-[var(--card)] rounded-2xl border border-[var(--line)] flex">
-          <span class="notch notch-top"></span><span class="notch notch-bottom"></span>
-          <div class="flex-1 p-5">
-            <p class="text-xs font-medium text-[var(--ink-soft)] mb-2">Total Active Students</p>
-            <h3 class="font-mono text-3xl font-bold text-[var(--ink)]">113</h3>
-            <span class="text-[11px] font-semibold text-[var(--gate)] bg-[var(--gate-tint)] px-2 py-0.5 rounded-full mt-3 inline-block">
-              <i class="fa-solid fa-arrow-up"></i> +12% this month
-            </span>
-          </div>
-          <div class="ticket-stub border-l border-dashed border-[var(--line)] flex flex-col items-center justify-center gap-2 py-4">
-            <i class="fa-solid fa-user-graduate text-[var(--gold-deep)]"></i>
-            <span class="stub-label font-mono text-[var(--ink-soft)]">STUDENTS</span>
-          </div>
+      <div class="kpi c-red">
+        <div class="kpi-accent-bar"></div>
+        <div class="kpi-header">
+          <span class="kpi-label">Total Applications</span>
+          <div class="kpi-icon"><i class="fa-solid fa-file-lines"></i></div>
         </div>
-
-        <div class="ticket-card relative bg-[var(--card)] rounded-2xl border border-[var(--line)] flex">
-          <span class="notch notch-top"></span><span class="notch notch-bottom"></span>
-          <div class="flex-1 p-5">
-            <p class="text-xs font-medium text-[var(--ink-soft)] mb-2">Total Applications</p>
-            <h3 class="font-mono text-3xl font-bold text-[var(--ink)]">194</h3>
-            <span class="text-[11px] font-semibold text-[var(--stamp)] bg-[var(--stamp-tint)] px-2 py-0.5 rounded-full mt-3 inline-block">
-              <i class="fa-solid fa-arrow-down"></i> -4% loss
-            </span>
-          </div>
-          <div class="ticket-stub border-l border-dashed border-[var(--line)] flex flex-col items-center justify-center gap-2 py-4">
-            <i class="fa-solid fa-file-lines text-[var(--gold-deep)]"></i>
-            <span class="stub-label font-mono text-[var(--ink-soft)]">APPLICATIONS</span>
-          </div>
-        </div>
-
-        <div class="ticket-card relative bg-[var(--card)] rounded-2xl border border-[var(--line)] flex">
-          <span class="notch notch-top"></span><span class="notch notch-bottom"></span>
-          <div class="flex-1 p-5">
-            <p class="text-xs font-medium text-[var(--ink-soft)] mb-2">Visas Received</p>
-            <h3 class="font-mono text-3xl font-bold text-[var(--gate)]">36</h3>
-            <span class="text-[11px] font-medium text-[var(--ink-soft)] mt-3 inline-block">Success rate 31.9%</span>
-          </div>
-          <div class="ticket-stub border-l border-dashed border-[var(--line)] flex flex-col items-center justify-center gap-2 py-4">
-            <i class="fa-solid fa-passport text-[var(--gold-deep)]"></i>
-            <span class="stub-label font-mono text-[var(--ink-soft)]">VISAS</span>
-          </div>
-        </div>
-
-        <div class="ticket-card relative bg-[var(--card)] rounded-2xl border border-[var(--line)] flex">
-          <span class="notch notch-top"></span><span class="notch notch-bottom"></span>
-          <div class="flex-1 p-5">
-            <p class="text-xs font-medium text-[var(--ink-soft)] mb-2">Partner Success Rate</p>
-            <h3 class="font-mono text-3xl font-bold text-[var(--ink)]">75%</h3>
-            <div class="w-full bg-[var(--paper)] h-1.5 rounded-full mt-3 overflow-hidden border border-[var(--line)]">
-              <div class="bg-[var(--gold)] h-full rounded-full" style="width:75%"></div>
-            </div>
-          </div>
-          <div class="ticket-stub border-l border-dashed border-[var(--line)] flex flex-col items-center justify-center gap-2 py-4">
-            <i class="fa-solid fa-star text-[var(--gold-deep)]"></i>
-            <span class="stub-label font-mono text-[var(--ink-soft)]">PARTNERS</span>
+        <div class="kpi-num">194</div>
+        <div class="kpi-footer">
+          <span class="pill pill-down"><i class="fa-solid fa-arrow-trend-down"></i> −4% vs last month</span>
+          <div class="kpi-trend-line" style="color:#C05030">
+            <span style="height:90%"></span><span style="height:100%"></span><span style="height:85%"></span><span style="height:80%"></span><span style="height:70%"></span><span style="height:65%"></span><span style="height:60%"></span><span style="height:50%"></span>
           </div>
         </div>
       </div>
 
-      <!-- PIPELINE AS ROUTE MAP + FINANCE RECEIPT -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="kpi c-green">
+        <div class="kpi-accent-bar"></div>
+        <div class="kpi-header">
+          <span class="kpi-label">Visas Received</span>
+          <div class="kpi-icon"><i class="fa-solid fa-passport"></i></div>
+        </div>
+        <div class="kpi-num">36</div>
+        <div class="kpi-footer">
+          <span class="pill pill-neutral">31.9% success rate</span>
+          <div class="kpi-trend-line" style="color:var(--green-mid)">
+            <span style="height:20%"></span><span style="height:30%"></span><span style="height:45%"></span><span style="height:40%"></span><span style="height:55%"></span><span style="height:60%"></span><span style="height:75%"></span><span style="height:100%"></span>
+          </div>
+        </div>
+      </div>
 
-        <div class="lg:col-span-2 bg-[var(--card)] p-6 rounded-2xl border border-[var(--line)]">
-          <div class="flex justify-between items-center mb-8">
+      <div class="kpi c-blue">
+        <div class="kpi-accent-bar"></div>
+        <div class="kpi-header">
+          <span class="kpi-label">Partner Success Rate</span>
+          <div class="kpi-icon"><i class="fa-solid fa-star"></i></div>
+        </div>
+        <div class="kpi-num">75%</div>
+        <div class="kpi-footer">
+          <span class="pill pill-neutral">Target: 80%</span>
+        </div>
+        <div class="mini-progress"><div class="mini-progress-fill" style="width:75%; background: var(--blue);"></div></div>
+      </div>
+
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="main-grid">
+
+      <!-- PIPELINE + UNIS -->
+      <div style="display:flex; flex-direction:column; gap:18px;">
+
+        <!-- Pipeline -->
+        <div class="panel">
+          <div class="panel-hd">
             <div>
-              <h3 class="font-display text-lg text-[var(--ink)]">Application Route</h3>
-              <p class="text-xs text-[var(--ink-soft)]">Milestones from conditional offer to CAS reception.</p>
+              <div class="panel-title">Application Pipeline</div>
+              <div class="panel-sub">Milestones from conditional offer through to CAS receipt.</div>
             </div>
-            <span class="text-[11px] bg-[var(--gold-tint)] text-[var(--gold-deep)] font-semibold px-3 py-1 rounded-full flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-[var(--gate)] animate-pulse motion-reduce:animate-none"></span> Live
-            </span>
+            <span class="panel-action">View all <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></span>
           </div>
 
-          <div class="relative px-2">
-            <div class="route-line"></div>
-            <i class="fa-solid fa-plane absolute -top-[7px] z-[1] text-[var(--gold-deep)] text-xs" style="left:62%; transform: rotate(90deg);"></i>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 relative">
-              <div class="flex flex-col items-center gap-3">
-                <div class="gate-marker border-[var(--gold)] text-[var(--gold-deep)]">4</div>
-                <p class="text-[11px] font-medium text-[var(--ink-soft)] uppercase tracking-wide text-center">Conditional</p>
+          <div class="pipeline-wrap">
+            <div class="pipeline-rail"><div class="pipeline-progress"></div></div>
+            <div class="pipeline-steps">
+              <div class="p-step">
+                <div class="p-bubble done">4</div>
+                <span class="p-label done-lbl">Conditional<br>Offer</span>
               </div>
-              <div class="flex flex-col items-center gap-3">
-                <div class="gate-marker border-[var(--gold-deep)] text-[var(--gold-deep)]">1</div>
-                <p class="text-[11px] font-medium text-[var(--ink-soft)] uppercase tracking-wide text-center">Unconditional</p>
+              <div class="p-step">
+                <div class="p-bubble done">1</div>
+                <span class="p-label done-lbl">Unconditional<br>Offer</span>
               </div>
-              <div class="flex flex-col items-center gap-3">
-                <div class="gate-marker border-[var(--stamp)] text-[var(--stamp)]">5</div>
-                <p class="text-[11px] font-medium text-[var(--ink-soft)] uppercase tracking-wide text-center">Requested CAS</p>
+              <div class="p-step">
+                <div class="p-bubble pending">5</div>
+                <span class="p-label">CAS<br>Requested</span>
               </div>
-              <div class="flex flex-col items-center gap-3">
-                <div class="gate-marker border-[var(--gate)] text-[var(--gate)] bg-[var(--gate-tint)]">7</div>
-                <p class="text-[11px] font-semibold text-[var(--gate)] uppercase tracking-wide text-center">Received CAS</p>
+              <div class="p-step">
+                <div class="p-bubble active">7</div>
+                <span class="p-label active-lbl">CAS<br>Received</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="bg-[var(--card)] p-6 rounded-2xl border border-[var(--line)] flex flex-col">
-          <h3 class="font-display text-lg text-[var(--ink)] mb-1">Finance Summary</h3>
-          <p class="text-xs text-[var(--ink-soft)] mb-5">Agreements and commissions to date.</p>
-
-          <div class="space-y-4 font-mono text-sm">
-            <div class="flex items-center">
-              <span class="text-[var(--ink)] flex items-center gap-2"><i class="fa-solid fa-file-contract text-[var(--gold-deep)] w-4"></i>Total Agreements</span>
-              <span class="leader"></span>
-              <span class="font-bold text-[var(--ink)]">1</span>
+        <!-- University table -->
+        <div class="panel">
+          <div class="panel-hd">
+            <div>
+              <div class="panel-title">Top Universities</div>
+              <div class="panel-sub">Ranked by active applications this cohort.</div>
             </div>
-            <div class="flex items-center">
-              <span class="text-[var(--ink)] flex items-center gap-2"><i class="fa-solid fa-coins text-[var(--gold-deep)] w-4"></i>Total Commissions</span>
-              <span class="leader"></span>
-              <span class="font-bold text-[var(--gate)]">1</span>
-            </div>
+            <span class="panel-action">View all <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></span>
           </div>
-
-          <div class="mt-auto pt-5 border-t border-dashed border-[var(--line)] text-[10px] uppercase tracking-[0.15em] text-[var(--ink-soft)] flex justify-between">
-            <span>Route 2 Uni — Ledger</span>
-            <span>FY 2026</span>
+          <div class="uni-table">
+            <div class="uni-row">
+              <div class="uni-rank">01</div>
+              <div class="uni-info"><div class="uni-name">University of Manchester</div><div class="uni-apps">Business &amp; Management</div></div>
+              <div class="uni-bar-wrap"><div class="uni-bar" style="width:100%"></div></div>
+              <div class="uni-count">42</div>
+            </div>
+            <div class="uni-row">
+              <div class="uni-rank">02</div>
+              <div class="uni-info"><div class="uni-name">University of Birmingham</div><div class="uni-apps">Engineering &amp; Technology</div></div>
+              <div class="uni-bar-wrap"><div class="uni-bar" style="width:74%"></div></div>
+              <div class="uni-count">31</div>
+            </div>
+            <div class="uni-row">
+              <div class="uni-rank">03</div>
+              <div class="uni-info"><div class="uni-name">University of Leeds</div><div class="uni-apps">Computer Science</div></div>
+              <div class="uni-bar-wrap"><div class="uni-bar" style="width:67%"></div></div>
+              <div class="uni-count">28</div>
+            </div>
+            <div class="uni-row">
+              <div class="uni-rank">04</div>
+              <div class="uni-info"><div class="uni-name">University of Edinburgh</div><div class="uni-apps">Law &amp; Social Sciences</div></div>
+              <div class="uni-bar-wrap"><div class="uni-bar" style="width:45%"></div></div>
+              <div class="uni-count">19</div>
+            </div>
+            <div class="uni-row">
+              <div class="uni-rank">05</div>
+              <div class="uni-info"><div class="uni-name">University of Exeter</div><div class="uni-apps">Medicine &amp; Health</div></div>
+              <div class="uni-bar-wrap"><div class="uni-bar" style="width:36%"></div></div>
+              <div class="uni-count">15</div>
+            </div>
           </div>
         </div>
+
       </div>
 
+      <!-- RIGHT COLUMN -->
+      <div style="display:flex; flex-direction:column; gap:18px;">
+
+        <!-- Finance -->
+        <div class="panel">
+          <div class="panel-hd">
+            <div>
+              <div class="panel-title">Finance</div>
+              <div class="panel-sub">Agreements and commissions.</div>
+            </div>
+          </div>
+          <div>
+            <div class="fin-stat">
+              <div class="fin-stat-left">
+                <div class="fin-ico"><i class="fa-solid fa-file-contract"></i></div>
+                <div>
+                  <div class="fin-lbl">Total Agreements</div>
+                  <div class="fin-sub">Active contracts</div>
+                </div>
+              </div>
+              <div class="fin-val">1</div>
+            </div>
+            <div class="fin-stat">
+              <div class="fin-stat-left">
+                <div class="fin-ico"><i class="fa-solid fa-coins"></i></div>
+                <div>
+                  <div class="fin-lbl">Total Commissions</div>
+                  <div class="fin-sub">Earned this cohort</div>
+                </div>
+              </div>
+              <div class="fin-val up">1</div>
+            </div>
+            <div class="fin-stat">
+              <div class="fin-stat-left">
+                <div class="fin-ico" style="background:var(--blue-bg); border-color:var(--blue-border); color:var(--blue);"><i class="fa-solid fa-chart-line"></i></div>
+                <div>
+                  <div class="fin-lbl">Projected Revenue</div>
+                  <div class="fin-sub">End of cohort estimate</div>
+                </div>
+              </div>
+              <div class="fin-val" style="color:var(--ink-faint);">—</div>
+            </div>
+          </div>
+          <div class="fin-footer">
+            <span class="fin-footer-txt">Route 2 Uni Ledger</span>
+            <span class="fy-tag">FY 2026</span>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="panel">
+          <div class="panel-hd">
+            <div>
+              <div class="panel-title">Recent Activity</div>
+              <div class="panel-sub">Latest student updates.</div>
+            </div>
+            <span class="panel-action">All activity</span>
+          </div>
+          <div>
+            <div class="act-item">
+              <div class="act-icon-wrap green"><i class="fa-solid fa-passport"></i></div>
+              <div>
+                <div class="act-text"><strong>Amara Osei</strong> received CAS confirmation</div>
+                <div class="act-time">2 hours ago</div>
+              </div>
+            </div>
+            <div class="act-item">
+              <div class="act-icon-wrap gold"><i class="fa-solid fa-check"></i></div>
+              <div>
+                <div class="act-text"><strong>Chen Wei</strong> accepted unconditional offer</div>
+                <div class="act-time">5 hours ago</div>
+              </div>
+            </div>
+            <div class="act-item">
+              <div class="act-icon-wrap blue"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <div class="act-text"><strong>Priya Nair</strong> received conditional offer</div>
+                <div class="act-time">Yesterday, 4:12 pm</div>
+              </div>
+            </div>
+            <div class="act-item">
+              <div class="act-icon-wrap red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+              <div>
+                <div class="act-text"><strong>Visa application</strong> flagged — missing biometrics</div>
+                <div class="act-time">Yesterday, 11:40 am</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="panel">
+          <div class="panel-hd">
+            <div><div class="panel-title">Quick Stats</div></div>
+          </div>
+          <div>
+            <div class="sum-row">
+              <span class="sum-lbl"><i class="fa-solid fa-globe"></i> Countries represented</span>
+              <span class="sum-val">18</span>
+            </div>
+            <div class="sum-row">
+              <span class="sum-lbl"><i class="fa-solid fa-building-columns"></i> Partner universities</span>
+              <span class="sum-val">24</span>
+            </div>
+            <div class="sum-row">
+              <span class="sum-lbl"><i class="fa-solid fa-hourglass-half"></i> Avg. processing time</span>
+              <span class="sum-val">12d</span>
+            </div>
+            <div class="sum-row">
+              <span class="sum-lbl"><i class="fa-solid fa-circle-check"></i> Offer acceptance rate</span>
+              <span class="sum-val">82%</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </main>
+
+  </div>
+</main>
 
 </body>
 </html>
