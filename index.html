@@ -2,223 +2,170 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Route 2 Uni — Dashboard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --navy:#0A1628;
-  --navy-2:#0F1E38;
-  --navy-3:#162544;
-  --navy-4:#1E3158;
-  --navy-5:#253D6C;
-  --gold:#D4A843;
-  --gold-2:#E8BF6A;
-  --gold-3:#F5D898;
-  --gold-4:#FDF3DC;
-  --gold-5:#FFFBF2;
-  --white:#FFFFFF;
-  --bg:#F7F8FC;
-  --surface:#FFFFFF;
-  --border:#E8ECF4;
-  --border-2:#D4DCE8;
-  --text:#0A1628;
-  --text-2:#3A4968;
-  --text-3:#6B7A99;
-  --text-4:#9BAABF;
-  --green:#0A7C4E;
-  --green-bg:#EAF7F2;
-  --green-bd:#A8DFC9;
-  --red:#B03030;
-  --red-bg:#FDF0EE;
-  --red-bd:#E8BDB3;
-  --blue:#1A54A8;
-  --blue-bg:#EEF3FB;
-  --blue-bd:#A8C0E8;
-  --r:14px;
-  --r-sm:9px;
-  --r-pill:999px;
-  --sh:0 1px 3px rgba(10,22,40,.07),0 0 0 1px rgba(10,22,40,.05);
-  --sh-md:0 4px 20px rgba(10,22,40,.09),0 1px 4px rgba(10,22,40,.06);
-  --sb-w:240px;
+  --nb:#0B1628;--nb2:#111F3A;--nb3:#172848;--nb4:#1E3256;
+  --gd:#D4A843;--gd2:#E8BF6A;--gd3:#F5D89A;--gd4:#FDF3DC;--gd5:#FFFCF2;
+  --bg:#F0F2F8;--card:#FFFFFF;--bdr:#E2E8F4;--bdr2:#CDD5E8;
+  --tx:#0B1628;--tx2:#3A4968;--tx3:#6B7A99;--tx4:#9BAABF;
+  --gr:#0A7C4E;--gr-bg:#E8F7F1;--gr-bd:#9FD9C0;
+  --rd:#B03030;--rd-bg:#FDF0EE;--rd-bd:#E8BDB3;
+  --bl:#1A54A8;--bl-bg:#EEF3FB;--bl-bd:#A8C0E8;
+  --r:14px;--rsm:9px;
+  --shm:0 4px 24px rgba(11,22,40,.10),0 1px 4px rgba(11,22,40,.06);
 }
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);display:flex;height:100vh;overflow:hidden;font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--tx);display:flex;height:100vh;overflow:hidden;font-size:13px;-webkit-font-smoothing:antialiased}
 
 /* SIDEBAR */
-aside{width:var(--sb-w);min-width:var(--sb-w);background:var(--navy);display:flex;flex-direction:column;border-right:1px solid rgba(255,255,255,0.05)}
-.sb-brand{padding:22px 20px 18px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:11px}
-.sb-mark{width:38px;height:38px;background:var(--gold);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--navy);flex-shrink:0}
-.sb-title{font-family:'Playfair Display',serif;font-size:16px;color:#FFF;font-weight:600;line-height:1.1}
-.sb-sub{font-size:9px;color:rgba(212,168,67,.65);letter-spacing:.18em;text-transform:uppercase;margin-top:3px}
-nav{padding:10px 12px;flex:1;overflow-y:auto}
-.nav-sect{margin-top:20px;margin-bottom:4px;padding-left:9px;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.22)}
-nav a{display:flex;align-items:center;gap:9px;padding:8.5px 10px;border-radius:9px;font-size:12.5px;color:rgba(255,255,255,0.45);text-decoration:none;transition:all .15s;margin-bottom:1px;font-weight:400}
-.nav-ico{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;transition:background .15s}
+aside{width:230px;min-width:230px;background:var(--nb);display:flex;flex-direction:column;border-right:1px solid rgba(255,255,255,.05)}
+.sb-brand{padding:20px 18px 16px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:10px}
+.sb-mk{width:36px;height:36px;background:var(--gd);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--nb);flex-shrink:0}
+.sb-ttl{font-family:'Playfair Display',serif;font-size:15px;color:#fff;font-weight:700;line-height:1.1}
+.sb-st{font-size:9px;color:rgba(212,168,67,.6);letter-spacing:.18em;text-transform:uppercase;margin-top:2px}
+nav{padding:8px 10px;flex:1;overflow-y:auto}
+.ns{margin-top:18px;margin-bottom:3px;padding-left:8px;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.2)}
+nav a{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;font-size:12.5px;color:rgba(255,255,255,.42);text-decoration:none;transition:all .15s;margin-bottom:1px}
+.ni{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10.5px;flex-shrink:0;transition:background .15s}
 nav a:hover{color:rgba(255,255,255,.8)}
-nav a:hover .nav-ico{background:rgba(255,255,255,.08)}
-nav a.active{color:#FFF;background:rgba(212,168,67,.13)}
-nav a.active .nav-ico{background:rgba(212,168,67,.18);color:var(--gold)}
-.nav-badge{margin-left:auto;font-size:9.5px;font-weight:700;background:rgba(212,168,67,.18);color:var(--gold-2);padding:2px 8px;border-radius:999px}
-.sb-sep{height:1px;background:rgba(255,255,255,.06);margin:8px 0}
-.sb-user{padding:14px 18px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:10px;flex-shrink:0}
-.sb-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#D4A843,#8F6820);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;flex-shrink:0;border:1.5px solid rgba(255,255,255,.1)}
-.sb-uname{font-size:12.5px;font-weight:500;color:#FFF;line-height:1.2}
-.sb-urole{font-size:10.5px;color:rgba(255,255,255,.35);margin-top:1px}
+nav a:hover .ni{background:rgba(255,255,255,.08)}
+nav a.active{color:#fff;background:rgba(212,168,67,.13)}
+nav a.active .ni{background:rgba(212,168,67,.2);color:var(--gd)}
+.nb{margin-left:auto;font-size:9px;font-weight:700;background:rgba(212,168,67,.18);color:var(--gd2);padding:2px 7px;border-radius:999px}
+.sdiv{height:1px;background:rgba(255,255,255,.06);margin:6px 0}
+.sb-usr{padding:12px 16px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:9px;flex-shrink:0}
+.sb-av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#D4A843,#8F6820);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;flex-shrink:0;border:1.5px solid rgba(255,255,255,.1)}
+.sb-un{font-size:12px;font-weight:500;color:#fff;line-height:1.2}
+.sb-ur{font-size:10px;color:rgba(255,255,255,.32);margin-top:1px}
 
 /* MAIN */
 main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.topbar{background:var(--card);padding:0 28px;height:58px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.bc{display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--tx3)}
+.bc .bca{color:var(--tx);font-weight:600}
+.tbr{display:flex;align-items:center;gap:6px}
+.tsr{display:flex;align-items:center;gap:7px;background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rsm);padding:6px 11px;font-size:12px;color:var(--tx3);width:200px;cursor:text;transition:border-color .15s}
+.tsr:hover{border-color:var(--gd)}
+.tsr kbd{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--tx4);background:#fff;border:1px solid var(--bdr2);border-radius:3px;padding:1px 4px}
+.ib{width:32px;height:32px;border-radius:var(--rsm);border:1px solid var(--bdr);background:#fff;display:flex;align-items:center;justify-content:center;color:var(--tx3);cursor:pointer;transition:all .15s;position:relative;font-size:12px}
+.ib:hover{border-color:var(--gd);background:var(--gd5)}
+.ndot{position:absolute;top:6px;right:6px;width:5px;height:5px;background:#C84040;border-radius:50%;border:1.5px solid #fff}
+.bex{display:flex;align-items:center;gap:6px;padding:7px 14px;background:var(--nb);border:none;border-radius:var(--rsm);font-size:12px;font-weight:600;color:#fff;cursor:pointer;transition:background .15s;text-decoration:none}
+.bex:hover{background:var(--nb3)}
+.bex i{font-size:10px;opacity:.7}
 
-/* TOPBAR */
-.topbar{background:var(--surface);padding:0 32px;height:60px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:10}
-.topbar-l{display:flex;align-items:center;gap:14px}
-.breadcrumb{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-3)}
-.breadcrumb .bc-sep{color:var(--border-2);font-size:9px}
-.breadcrumb .bc-cur{color:var(--text);font-weight:500}
-.topbar-r{display:flex;align-items:center;gap:7px}
-.tsearch{display:flex;align-items:center;gap:7px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:6px 12px;font-size:12px;color:var(--text-3);width:210px;cursor:text;transition:border-color .15s}
-.tsearch:hover{border-color:var(--gold)}
-.tsearch kbd{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-4);background:#fff;border:1px solid var(--border-2);border-radius:4px;padding:1px 5px}
-.icon-btn{width:34px;height:34px;border-radius:var(--r-sm);border:1px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;color:var(--text-3);cursor:pointer;transition:all .15s;position:relative;font-size:12.5px}
-.icon-btn:hover{border-color:var(--gold);color:var(--text);background:var(--gold-5)}
-.notif-dot{position:absolute;top:7px;right:7px;width:5px;height:5px;background:#C84040;border-radius:50%;border:1.5px solid #fff}
-.btn-export{display:flex;align-items:center;gap:6px;padding:7px 15px;background:var(--navy);border:none;border-radius:var(--r-sm);font-size:12.5px;font-weight:500;color:#FFF;cursor:pointer;transition:background .15s;text-decoration:none;letter-spacing:.01em}
-.btn-export:hover{background:var(--navy-3)}
-.btn-export i{font-size:10.5px;opacity:.7}
+/* SCROLL */
+.scroll{flex:1;overflow-y:auto;padding:24px 28px 60px}
 
-/* CONTENT SCROLL */
-.content{flex:1;overflow-y:auto;padding:28px 32px 60px}
-
-/* PAGE HEADING */
-.page-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:26px}
-.page-eye{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:5px}
-.page-ttl{font-family:'Playfair Display',serif;font-size:28px;color:var(--text);font-weight:700;line-height:1}
-.meta-row{display:flex;align-items:center;gap:10px}
-.live-pill{display:flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;color:var(--green);background:var(--green-bg);border:1px solid var(--green-bd);padding:5px 11px;border-radius:999px}
-.live-dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:blink 2.4s ease-in-out infinite}
+/* PAGE TITLE */
+.phd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+.pey{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--gd);margin-bottom:4px}
+.ptt{font-family:'Playfair Display',serif;font-size:26px;color:var(--tx);font-weight:700;line-height:1}
+.mr{display:flex;align-items:center;gap:8px}
+.lp{display:flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;color:var(--gr);background:var(--gr-bg);border:1px solid var(--gr-bd);padding:4px 10px;border-radius:999px}
+.ld{width:5px;height:5px;background:var(--gr);border-radius:50%;animation:blink 2.4s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-.date-tag{font-size:11.5px;color:var(--text-3);background:#fff;border:1px solid var(--border);padding:5px 11px;border-radius:999px}
+.dtag{font-size:11px;color:var(--tx3);background:#fff;border:1px solid var(--bdr);padding:4px 10px;border-radius:999px}
 
-/* KPI GRID */
-.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
-.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px 18px;position:relative;overflow:hidden;cursor:default;transition:box-shadow .2s,transform .2s}
-.kpi:hover{box-shadow:var(--sh-md);transform:translateY(-1px)}
-.kpi-top-bar{position:absolute;top:0;left:0;right:0;height:3px}
-.kpi-bar-gold{background:linear-gradient(90deg,var(--gold),var(--gold-2))}
-.kpi-bar-red{background:linear-gradient(90deg,#B03030,#D46050)}
-.kpi-bar-green{background:linear-gradient(90deg,var(--green),#18A86A)}
-.kpi-bar-blue{background:linear-gradient(90deg,var(--blue),#3A74C8)}
-.kpi-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-.kpi-lbl{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text-3)}
-.kpi-ico{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
-.kpi-ico-gold{background:var(--gold-4);color:var(--gold)}
-.kpi-ico-red{background:var(--red-bg);color:var(--red)}
-.kpi-ico-green{background:var(--green-bg);color:var(--green)}
-.kpi-ico-blue{background:var(--blue-bg);color:var(--blue)}
-.kpi-num{font-family:'JetBrains Mono',monospace;font-size:38px;font-weight:700;letter-spacing:-.03em;line-height:1;margin-bottom:13px;color:var(--text)}
-.kpi-num-green{color:var(--green)}
-.kpi-ft{display:flex;align-items:center;justify-content:space-between}
-.pill{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:.01em}
-.pill-up{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
-.pill-dn{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
-.pill-nu{background:var(--bg);color:var(--text-3);border:1px solid var(--border-2)}
-.sparkline{display:flex;align-items:flex-end;gap:2.5px;height:22px}
-.sparkline span{width:4px;border-radius:2px;display:block;opacity:.5;background:currentColor}
-.kpi:hover .sparkline span{opacity:.9}
-.mini-prog{height:4px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:12px}
-.mini-prog-fill{height:100%;border-radius:99px}
+/* KPI CARDS */
+.kg{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:18px}
+.kc{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:18px 20px 16px;position:relative;overflow:hidden;cursor:default;transition:box-shadow .2s,transform .2s}
+.kc:hover{box-shadow:var(--shm);transform:translateY(-1px)}
+.ktb{position:absolute;top:0;left:0;right:0;height:3px}
+.kh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.kl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--tx3)}
+.ki{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11.5px;flex-shrink:0}
+.kn{font-family:'JetBrains Mono',monospace;font-size:34px;font-weight:700;letter-spacing:-.03em;line-height:1;margin-bottom:10px}
+.kf{display:flex;align-items:center;justify-content:space-between}
+.kch{height:44px;width:80px}
+.pill{display:inline-flex;align-items:center;gap:3px;font-size:9.5px;font-weight:700;padding:3px 7px;border-radius:999px}
+.pu{background:var(--gr-bg);color:var(--gr);border:1px solid var(--gr-bd)}
+.pd{background:var(--rd-bg);color:var(--rd);border:1px solid var(--rd-bd)}
+.pn-pill{background:var(--bg);color:var(--tx3);border:1px solid var(--bdr2)}
+.mpr{height:4px;background:var(--bdr);border-radius:99px;overflow:hidden;margin-top:10px}
+.mpf{height:100%;border-radius:99px}
 
-/* GRID LAYOUT */
-.main-grid{display:grid;grid-template-columns:1fr 1fr 320px;gap:16px;align-items:start}
-.col-left{display:flex;flex-direction:column;gap:16px}
-.col-mid{display:flex;flex-direction:column;gap:16px}
-.col-right{display:flex;flex-direction:column;gap:16px}
+/* GRID */
+.mg{display:grid;grid-template-columns:1fr 1fr 300px;gap:15px;align-items:start}
+.cl{display:flex;flex-direction:column;gap:15px}
 
 /* PANEL */
-.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px}
-.panel-hd{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
-.panel-ttl{font-family:'Playfair Display',serif;font-size:16px;color:var(--text);font-weight:600;line-height:1.2}
-.panel-sub{font-size:11.5px;color:var(--text-3);margin-top:3px}
-.panel-act{font-size:11px;color:var(--gold);font-weight:600;cursor:pointer;padding:4px 8px;border-radius:6px;transition:background .15s;white-space:nowrap}
-.panel-act:hover{background:var(--gold-4)}
+.panel{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:20px}
+.phdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px}
+.pttl{font-family:'Playfair Display',serif;font-size:15px;color:var(--tx);font-weight:700;line-height:1.2}
+.psub{font-size:11px;color:var(--tx3);margin-top:2px}
+.pac{font-size:10.5px;color:var(--gd);font-weight:600;cursor:pointer;padding:3px 7px;border-radius:5px;transition:background .15s;white-space:nowrap}
+.pac:hover{background:var(--gd4)}
 
 /* PIPELINE */
-.pipe-wrap{position:relative;margin:4px 0 26px}
-.pipe-rail{position:absolute;top:25px;left:25px;right:25px;height:2px;background:var(--border-2);border-radius:2px;z-index:0}
-.pipe-prog{height:100%;width:78%;background:linear-gradient(90deg,var(--gold),var(--gold-2));border-radius:2px}
-.pipe-steps{display:grid;grid-template-columns:repeat(4,1fr);position:relative;z-index:1}
-.p-step{display:flex;flex-direction:column;align-items:center;gap:9px}
-.p-bub{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;background:var(--surface);border:2px solid var(--border-2);color:var(--text-3);transition:box-shadow .2s}
-.p-bub.done{border-color:var(--gold);color:var(--gold);box-shadow:0 0 0 4px var(--gold-4)}
-.p-bub.active{border-color:var(--green);color:var(--green);background:var(--green-bg);box-shadow:0 0 0 4px rgba(10,124,78,.09)}
-.p-bub.pending{border-color:var(--red-bd);color:var(--red)}
-.p-lbl{font-size:10px;font-weight:600;text-align:center;line-height:1.4;text-transform:uppercase;letter-spacing:.07em;color:var(--text-3)}
-.p-lbl.done{color:var(--gold)}
-.p-lbl.active{color:var(--green)}
-
-/* UNI TABLE */
-.uni-table{width:100%}
-.uni-row{display:flex;align-items:center;gap:13px;padding:10px 0;border-bottom:1px solid var(--bg)}
-.uni-row:last-child{border-bottom:none}
-.uni-rank{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;color:var(--text-4);width:16px;flex-shrink:0}
-.uni-info{flex:1;min-width:0}
-.uni-name{font-size:12.5px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.uni-dept{font-size:11px;color:var(--text-3);margin-top:1px}
-.uni-bar-bg{width:72px;height:3.5px;background:var(--bg);border-radius:99px;overflow:hidden;flex-shrink:0}
-.uni-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-2));border-radius:99px}
-.uni-n{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:var(--text);width:24px;text-align:right;flex-shrink:0}
-
-/* FINANCE */
-.fin-item{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--bg)}
-.fin-item:last-child{border-bottom:none}
-.fin-item-l{display:flex;align-items:center;gap:10px}
-.fin-ico{width:32px;height:32px;border-radius:9px;background:var(--gold-4);border:1px solid var(--gold-3);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--gold);flex-shrink:0}
-.fin-lbl{font-size:12.5px;color:var(--text-2)}
-.fin-sub{font-size:10.5px;color:var(--text-3);margin-top:1.5px}
-.fin-val{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--text)}
-.fin-val.up{color:var(--green)}
-.fin-ft{margin-top:18px;padding-top:14px;border-top:1px dashed var(--border-2);display:flex;justify-content:space-between;align-items:center}
-.fin-ft-txt{font-size:9.5px;text-transform:uppercase;letter-spacing:.15em;color:var(--text-4)}
-.fy-badge{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--gold);background:var(--gold-4);border:1px solid var(--gold-3);padding:3px 9px;border-radius:999px}
+.pw{position:relative;margin:2px 0 24px}
+.pr{position:absolute;top:23px;left:23px;right:23px;height:2px;background:var(--bdr2);border-radius:2px;z-index:0}
+.pp{height:100%;width:78%;background:linear-gradient(90deg,var(--gd),var(--gd2));border-radius:2px}
+.ps{display:grid;grid-template-columns:repeat(4,1fr);position:relative;z-index:1}
+.pst{display:flex;flex-direction:column;align-items:center;gap:8px}
+.pb{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;background:var(--card);border:2px solid var(--bdr2);color:var(--tx3)}
+.pb.done{border-color:var(--gd);color:var(--gd);box-shadow:0 0 0 4px var(--gd4)}
+.pb.active{border-color:var(--gr);color:var(--gr);background:var(--gr-bg);box-shadow:0 0 0 4px rgba(10,124,78,.08)}
+.pb.pend{border-color:var(--rd-bd);color:var(--rd)}
+.plb{font-size:9.5px;font-weight:600;text-align:center;line-height:1.4;text-transform:uppercase;letter-spacing:.06em;color:var(--tx3)}
+.plb.done{color:var(--gd)}
+.plb.active{color:var(--gr)}
 
 /* ACTIVITY */
-.act-item{display:flex;align-items:flex-start;gap:11px;padding:10px 0;border-bottom:1px solid var(--bg)}
-.act-item:last-child{border-bottom:none}
-.act-ico{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11.5px;flex-shrink:0;margin-top:1px}
-.act-ico.g{background:var(--green-bg);color:var(--green)}
-.act-ico.a{background:var(--gold-4);color:var(--gold)}
-.act-ico.b{background:var(--blue-bg);color:var(--blue)}
-.act-ico.r{background:var(--red-bg);color:var(--red)}
-.act-body{font-size:12.5px;color:var(--text-2);line-height:1.45}
-.act-body strong{color:var(--text);font-weight:600}
-.act-time{font-size:10.5px;color:var(--text-4);margin-top:2.5px}
+.ai{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--bg)}
+.ai:last-child{border-bottom:none}
+.aic{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;margin-top:1px}
+.aic.g{background:var(--gr-bg);color:var(--gr)}
+.aic.a{background:var(--gd4);color:var(--gd)}
+.aic.b{background:var(--bl-bg);color:var(--bl)}
+.aic.r{background:var(--rd-bg);color:var(--rd)}
+.atx{font-size:12px;color:var(--tx2);line-height:1.45}
+.atx strong{color:var(--tx);font-weight:600}
+.atm{font-size:10px;color:var(--tx4);margin-top:2px}
 
 /* QUICK STATS */
-.qs-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bg)}
-.qs-row:last-child{border-bottom:none}
-.qs-lbl{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-2)}
-.qs-lbl i{color:var(--text-4);font-size:11.5px;width:13px;text-align:center}
-.qs-val{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13.5px;color:var(--text)}
+.sr{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--bg)}
+.sr:last-child{border-bottom:none}
+.sl{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--tx2)}
+.sl i{color:var(--tx4);font-size:11px;width:12px;text-align:center}
+.sv{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;color:var(--tx)}
 
-/* ACCENT PANEL */
-.accent-panel{background:linear-gradient(135deg,var(--navy-2) 0%,var(--navy-4) 100%);border:1px solid var(--navy-3);border-radius:var(--r);padding:20px 22px;position:relative;overflow:hidden}
-.accent-panel::before{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:var(--gold);opacity:.06;border-radius:50%}
-.accent-panel::after{content:'';position:absolute;bottom:-20px;left:-10px;width:70px;height:70px;background:var(--gold);opacity:.04;border-radius:50%}
-.accent-panel .panel-ttl{color:#FFF}
-.accent-panel .panel-sub{color:rgba(255,255,255,.45)}
-.acc-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
-.acc-s{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px 14px}
-.acc-n{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:#FFF;line-height:1}
-.acc-l{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:rgba(212,168,67,.7);margin-top:4px}
+/* DARK CARD */
+.dkc{background:linear-gradient(135deg,var(--nb2) 0%,var(--nb4) 100%);border:1px solid var(--nb3);border-radius:var(--r);padding:20px;position:relative;overflow:hidden}
+.dkc::before{content:'';position:absolute;top:-30px;right:-30px;width:90px;height:90px;background:var(--gd);opacity:.07;border-radius:50%}
+.dkc::after{content:'';position:absolute;bottom:-20px;left:-10px;width:60px;height:60px;background:var(--gd);opacity:.04;border-radius:50%}
+.dkc .pttl{color:#fff}
+.dkc .psub{color:rgba(255,255,255,.4)}
+.acs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:2px}
+.ac{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:9px;padding:11px 13px}
+.acn{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:#fff;line-height:1}
+.acl{font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:rgba(212,168,67,.65);margin-top:3px}
 
-@media(max-width:1200px){
-  .kpi-grid{grid-template-columns:repeat(2,1fr)}
-  .main-grid{grid-template-columns:1fr 320px}
-  .col-left{grid-column:1;grid-row:1}
-  .col-mid{grid-column:1;grid-row:2}
-  .col-right{grid-column:2;grid-row:1/3}
+/* FINANCE */
+.fi{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--bg)}
+.fi:last-child{border-bottom:none}
+.fil{display:flex;align-items:center;gap:9px}
+.fic{width:30px;height:30px;border-radius:8px;background:var(--gd4);border:1px solid var(--gd3);display:flex;align-items:center;justify-content:center;font-size:11.5px;color:var(--gd);flex-shrink:0}
+.fll{font-size:12px;color:var(--tx2)}
+.fls{font-size:10px;color:var(--tx3);margin-top:1px}
+.fv{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--tx)}
+.fv.up{color:var(--gr)}
+.fff{margin-top:14px;padding-top:12px;border-top:1px dashed var(--bdr2);display:flex;justify-content:space-between;align-items:center}
+.fft{font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--tx4)}
+.fyb{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;color:var(--gd);background:var(--gd4);border:1px solid var(--gd3);padding:2px 8px;border-radius:999px}
+
+/* CHART LEGEND */
+.cleg{display:flex;align-items:center;gap:14px;margin-bottom:10px;flex-wrap:wrap}
+.cleg span{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--tx3)}
+.cleg span b{width:10px;height:3px;border-radius:2px;display:inline-block}
+
+@media(max-width:1280px){
+  .kg{grid-template-columns:repeat(2,1fr)}
+  .mg{grid-template-columns:1fr 320px}
 }
 </style>
 </head>
@@ -227,369 +174,218 @@ main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 <!-- SIDEBAR -->
 <aside>
   <div class="sb-brand">
-    <div class="sb-mark"><i class="fa-solid fa-route"></i></div>
+    <div class="sb-mk"><i class="fa-solid fa-route"></i></div>
     <div>
-      <div class="sb-title">Route 2 Uni</div>
-      <div class="sb-sub">International Group</div>
+      <div class="sb-ttl">Route 2 Uni</div>
+      <div class="sb-st">International Group</div>
     </div>
   </div>
-
   <nav>
-    <div class="nav-sect">Overview</div>
-    <a href="#" class="active">
-      <div class="nav-ico"><i class="fa-solid fa-chart-pie"></i></div>
-      Dashboard
-      <span class="nav-badge">Live</span>
-    </a>
-
-    <div class="nav-sect">Management</div>
-    <a href="#">
-      <div class="nav-ico"><i class="fa-solid fa-user-graduate"></i></div>
-      Students
-    </a>
-    <a href="#">
-      <div class="nav-ico"><i class="fa-solid fa-building-columns"></i></div>
-      Universities
-    </a>
-    <a href="#">
-      <div class="nav-ico"><i class="fa-solid fa-users-gear"></i></div>
-      User Management
-    </a>
-
-    <div class="nav-sect">Operations</div>
-    <a href="#">
-      <div class="nav-ico"><i class="fa-solid fa-handshake"></i></div>
-      Partner Registration
-    </a>
-    <a href="#">
-      <div class="nav-ico"><i class="fa-solid fa-wallet"></i></div>
-      Finance Section
-    </a>
-
-    <div class="sb-sep"></div>
-    <a href="#">
-      <div class="nav-ico"><i class="fa-solid fa-gear"></i></div>
-      Settings
-    </a>
-    <a href="#">
-      <div class="nav-ico"><i class="fa-solid fa-circle-question"></i></div>
-      Help &amp; Support
-    </a>
+    <div class="ns">Overview</div>
+    <a href="#" class="active"><div class="ni"><i class="fa-solid fa-chart-pie"></i></div>Dashboard<span class="nb">Live</span></a>
+    <div class="ns">Management</div>
+    <a href="#"><div class="ni"><i class="fa-solid fa-user-graduate"></i></div>Students</a>
+    <a href="#"><div class="ni"><i class="fa-solid fa-building-columns"></i></div>Universities</a>
+    <a href="#"><div class="ni"><i class="fa-solid fa-users-gear"></i></div>User Management</a>
+    <div class="ns">Operations</div>
+    <a href="#"><div class="ni"><i class="fa-solid fa-handshake"></i></div>Partner Registration</a>
+    <a href="#"><div class="ni"><i class="fa-solid fa-wallet"></i></div>Finance Section</a>
+    <div class="sdiv"></div>
+    <a href="#"><div class="ni"><i class="fa-solid fa-gear"></i></div>Settings</a>
+    <a href="#"><div class="ni"><i class="fa-solid fa-circle-question"></i></div>Help &amp; Support</a>
   </nav>
-
-  <div class="sb-user">
+  <div class="sb-usr">
     <div class="sb-av">SA</div>
-    <div>
-      <div class="sb-uname">Super Admin</div>
-      <div class="sb-urole">admin@route2uni.com</div>
-    </div>
-    <div style="margin-left:auto;color:rgba(255,255,255,.22);font-size:12px;cursor:pointer"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+    <div><div class="sb-un">Super Admin</div><div class="sb-ur">admin@route2uni.com</div></div>
+    <div style="margin-left:auto;color:rgba(255,255,255,.2);font-size:11px;cursor:pointer"><i class="fa-solid fa-ellipsis-vertical"></i></div>
   </div>
 </aside>
 
 <!-- MAIN -->
 <main>
   <div class="topbar">
-    <div class="topbar-l">
-      <div class="breadcrumb">
-        <span style="cursor:pointer"><i class="fa-solid fa-house" style="font-size:10px"></i></span>
-        <span class="bc-sep"><i class="fa-solid fa-chevron-right"></i></span>
-        <span class="bc-cur">Dashboard</span>
-      </div>
+    <div class="bc">
+      <span style="cursor:pointer"><i class="fa-solid fa-house" style="font-size:10px"></i></span>
+      <span style="color:var(--bdr2);font-size:9px"><i class="fa-solid fa-chevron-right"></i></span>
+      <span class="bca">Dashboard</span>
     </div>
-    <div class="topbar-r">
-      <div class="tsearch">
-        <i class="fa-solid fa-magnifying-glass" style="font-size:10.5px"></i>
-        Search students, universities…
-        <kbd>⌘K</kbd>
-      </div>
-      <div class="icon-btn">
-        <i class="fa-solid fa-bell"></i>
-        <span class="notif-dot"></span>
-      </div>
-      <div class="icon-btn">
-        <i class="fa-solid fa-rotate-right"></i>
-      </div>
-      <a href="#" class="btn-export">
-        <i class="fa-solid fa-file-arrow-down"></i>
-        Export Report
-      </a>
+    <div class="tbr">
+      <div class="tsr"><i class="fa-solid fa-magnifying-glass" style="font-size:10px"></i>Search students, unis…<kbd>⌘K</kbd></div>
+      <div class="ib"><i class="fa-solid fa-bell"></i><span class="ndot"></span></div>
+      <div class="ib"><i class="fa-solid fa-rotate-right"></i></div>
+      <a href="#" class="bex"><i class="fa-solid fa-file-arrow-down"></i>Export Report</a>
     </div>
   </div>
 
-  <div class="content">
+  <div class="scroll">
 
     <!-- PAGE HEADING -->
-    <div class="page-hd">
-      <div>
-        <div class="page-eye">Operations Overview</div>
-        <div class="page-ttl">Dashboard</div>
-      </div>
-      <div class="meta-row">
-        <div class="live-pill"><span class="live-dot"></span> Live</div>
-        <div class="date-tag"><i class="fa-regular fa-calendar" style="margin-right:5px;font-size:10.5px"></i>Cohort 2025–26 &nbsp;·&nbsp; 23 June 2026</div>
+    <div class="phd">
+      <div><div class="pey">Operations Overview</div><div class="ptt">Dashboard</div></div>
+      <div class="mr">
+        <div class="lp"><span class="ld"></span>Live</div>
+        <div class="dtag"><i class="fa-regular fa-calendar" style="margin-right:4px;font-size:10px"></i>Cohort 2025–26 &nbsp;·&nbsp; 23 June 2026</div>
       </div>
     </div>
 
     <!-- KPI CARDS -->
-    <div class="kpi-grid">
-
-      <div class="kpi">
-        <div class="kpi-top-bar kpi-bar-gold"></div>
-        <div class="kpi-hd">
-          <span class="kpi-lbl">Active Students</span>
-          <div class="kpi-ico kpi-ico-gold"><i class="fa-solid fa-user-graduate"></i></div>
-        </div>
-        <div class="kpi-num">113</div>
-        <div class="kpi-ft">
-          <span class="pill pill-up"><i class="fa-solid fa-arrow-trend-up"></i> +12% this month</span>
-          <div class="sparkline" style="color:var(--gold)">
-            <span style="height:35%"></span><span style="height:50%"></span><span style="height:40%"></span><span style="height:65%"></span><span style="height:55%"></span><span style="height:80%"></span><span style="height:70%"></span><span style="height:100%"></span>
-          </div>
+    <div class="kg">
+      <div class="kc">
+        <div class="ktb" style="background:linear-gradient(90deg,#D4A843,#E8BF6A)"></div>
+        <div class="kh"><span class="kl">Active Students</span><div class="ki" style="background:#FDF3DC;color:#D4A843"><i class="fa-solid fa-user-graduate"></i></div></div>
+        <div class="kn" style="color:var(--tx)">113</div>
+        <div class="kf">
+          <span class="pill pu"><i class="fa-solid fa-arrow-trend-up"></i> +12% this month</span>
+          <canvas id="spk1" class="kch" role="img" aria-label="Sparkline upward trend for active students"></canvas>
         </div>
       </div>
-
-      <div class="kpi">
-        <div class="kpi-top-bar kpi-bar-red"></div>
-        <div class="kpi-hd">
-          <span class="kpi-lbl">Total Applications</span>
-          <div class="kpi-ico kpi-ico-red"><i class="fa-solid fa-file-lines"></i></div>
-        </div>
-        <div class="kpi-num">194</div>
-        <div class="kpi-ft">
-          <span class="pill pill-dn"><i class="fa-solid fa-arrow-trend-down"></i> −4% vs last month</span>
-          <div class="sparkline" style="color:#C84040">
-            <span style="height:90%"></span><span style="height:100%"></span><span style="height:85%"></span><span style="height:80%"></span><span style="height:70%"></span><span style="height:65%"></span><span style="height:60%"></span><span style="height:50%"></span>
-          </div>
+      <div class="kc">
+        <div class="ktb" style="background:linear-gradient(90deg,#B03030,#D46050)"></div>
+        <div class="kh"><span class="kl">Total Applications</span><div class="ki" style="background:#FDF0EE;color:#B03030"><i class="fa-solid fa-file-lines"></i></div></div>
+        <div class="kn" style="color:var(--tx)">194</div>
+        <div class="kf">
+          <span class="pill pd"><i class="fa-solid fa-arrow-trend-down"></i> −4% vs last month</span>
+          <canvas id="spk2" class="kch" role="img" aria-label="Sparkline downward trend for applications"></canvas>
         </div>
       </div>
-
-      <div class="kpi">
-        <div class="kpi-top-bar kpi-bar-green"></div>
-        <div class="kpi-hd">
-          <span class="kpi-lbl">Visas Received</span>
-          <div class="kpi-ico kpi-ico-green"><i class="fa-solid fa-passport"></i></div>
-        </div>
-        <div class="kpi-num kpi-num-green">36</div>
-        <div class="kpi-ft">
-          <span class="pill pill-nu">31.9% success rate</span>
-          <div class="sparkline" style="color:var(--green)">
-            <span style="height:20%"></span><span style="height:30%"></span><span style="height:45%"></span><span style="height:40%"></span><span style="height:55%"></span><span style="height:60%"></span><span style="height:75%"></span><span style="height:100%"></span>
-          </div>
+      <div class="kc">
+        <div class="ktb" style="background:linear-gradient(90deg,#0A7C4E,#18A86A)"></div>
+        <div class="kh"><span class="kl">Visas Received</span><div class="ki" style="background:#E8F7F1;color:#0A7C4E"><i class="fa-solid fa-passport"></i></div></div>
+        <div class="kn" style="color:#0A7C4E">36</div>
+        <div class="kf">
+          <span class="pill pn-pill">31.9% success rate</span>
+          <canvas id="spk3" class="kch" role="img" aria-label="Sparkline upward trend for visas"></canvas>
         </div>
       </div>
-
-      <div class="kpi">
-        <div class="kpi-top-bar kpi-bar-blue"></div>
-        <div class="kpi-hd">
-          <span class="kpi-lbl">Partner Success Rate</span>
-          <div class="kpi-ico kpi-ico-blue"><i class="fa-solid fa-star"></i></div>
-        </div>
-        <div class="kpi-num">75%</div>
-        <div class="kpi-ft">
-          <span class="pill pill-nu">Target: 80%</span>
-        </div>
-        <div class="mini-prog"><div class="mini-prog-fill" style="width:75%;background:var(--blue)"></div></div>
+      <div class="kc">
+        <div class="ktb" style="background:linear-gradient(90deg,#1A54A8,#3A74C8)"></div>
+        <div class="kh"><span class="kl">Partner Success Rate</span><div class="ki" style="background:#EEF3FB;color:#1A54A8"><i class="fa-solid fa-star"></i></div></div>
+        <div class="kn" style="color:var(--tx)">75%</div>
+        <div class="kf"><span class="pill pn-pill">Target: 80%</span></div>
+        <div class="mpr"><div class="mpf" style="width:75%;background:#1A54A8"></div></div>
       </div>
-
     </div>
 
     <!-- MAIN GRID -->
-    <div class="main-grid">
+    <div class="mg">
 
       <!-- LEFT COL -->
-      <div class="col-left">
+      <div class="cl">
 
+        <!-- Area Chart -->
         <div class="panel">
-          <div class="panel-hd">
-            <div>
-              <div class="panel-ttl">Application Pipeline</div>
-              <div class="panel-sub">Conditional offer through to CAS receipt</div>
-            </div>
-            <span class="panel-act">View all <i class="fa-solid fa-arrow-right" style="font-size:9px"></i></span>
+          <div class="phdr">
+            <div><div class="pttl">Applications Overview</div><div class="psub">Monthly trend — Cohort 2025–26</div></div>
+            <span class="pac">View all <i class="fa-solid fa-arrow-right" style="font-size:9px"></i></span>
           </div>
-          <div class="pipe-wrap">
-            <div class="pipe-rail"><div class="pipe-prog"></div></div>
-            <div class="pipe-steps">
-              <div class="p-step">
-                <div class="p-bub done">4</div>
-                <span class="p-lbl done">Conditional<br>Offer</span>
-              </div>
-              <div class="p-step">
-                <div class="p-bub done">1</div>
-                <span class="p-lbl done">Unconditional<br>Offer</span>
-              </div>
-              <div class="p-step">
-                <div class="p-bub pending">5</div>
-                <span class="p-lbl">CAS<br>Requested</span>
-              </div>
-              <div class="p-step">
-                <div class="p-bub active">7</div>
-                <span class="p-lbl active">CAS<br>Received</span>
-              </div>
-            </div>
+          <div class="cleg">
+            <span><b style="background:#1A54A8"></b>Applications</span>
+            <span><b style="background:#0A7C4E"></b>Visas Issued</span>
           </div>
+          <div style="position:relative;height:180px"><canvas id="areaChart" role="img" aria-label="Area chart: Applications Jan 18 to Jun 42, Visas Jan 4 to Jun 11">Applications increased from 18 in Jan to 42 in Jun. Visas from 4 to 11.</canvas></div>
         </div>
 
-        <div class="accent-panel">
-          <div class="panel-hd" style="margin-bottom:14px">
-            <div>
-              <div class="panel-ttl">Cohort Snapshot</div>
-              <div class="panel-sub">2025–26 highlights</div>
-            </div>
+        <!-- Pipeline -->
+        <div class="panel">
+          <div class="phdr">
+            <div><div class="pttl">Application Pipeline</div><div class="psub">Conditional offer → CAS receipt</div></div>
+            <span class="pac">Details <i class="fa-solid fa-arrow-right" style="font-size:9px"></i></span>
           </div>
-          <div class="acc-stats">
-            <div class="acc-s"><div class="acc-n">18</div><div class="acc-l">Countries</div></div>
-            <div class="acc-s"><div class="acc-n">24</div><div class="acc-l">Partner Unis</div></div>
-            <div class="acc-s"><div class="acc-n">12d</div><div class="acc-l">Avg. Processing</div></div>
-            <div class="acc-s"><div class="acc-n">82%</div><div class="acc-l">Offer Acceptance</div></div>
+          <div class="pw">
+            <div class="pr"><div class="pp"></div></div>
+            <div class="ps">
+              <div class="pst"><div class="pb done">4</div><span class="plb done">Conditional<br>Offer</span></div>
+              <div class="pst"><div class="pb done">1</div><span class="plb done">Unconditional<br>Offer</span></div>
+              <div class="pst"><div class="pb pend">5</div><span class="plb">CAS<br>Requested</span></div>
+              <div class="pst"><div class="pb active">7</div><span class="plb active">CAS<br>Received</span></div>
+            </div>
           </div>
         </div>
 
       </div>
 
       <!-- MID COL -->
-      <div class="col-mid">
+      <div class="cl">
 
+        <!-- Bar Chart -->
         <div class="panel">
-          <div class="panel-hd">
-            <div>
-              <div class="panel-ttl">Top Universities</div>
-              <div class="panel-sub">Ranked by active applications this cohort</div>
-            </div>
-            <span class="panel-act">View all <i class="fa-solid fa-arrow-right" style="font-size:9px"></i></span>
+          <div class="phdr">
+            <div><div class="pttl">Top Universities</div><div class="psub">Applications by institution</div></div>
+            <span class="pac">All <i class="fa-solid fa-arrow-right" style="font-size:9px"></i></span>
           </div>
-          <div class="uni-table">
-            <div class="uni-row">
-              <div class="uni-rank">01</div>
-              <div class="uni-info"><div class="uni-name">University of Manchester</div><div class="uni-dept">Business &amp; Management</div></div>
-              <div class="uni-bar-bg"><div class="uni-bar-fill" style="width:100%"></div></div>
-              <div class="uni-n">42</div>
-            </div>
-            <div class="uni-row">
-              <div class="uni-rank">02</div>
-              <div class="uni-info"><div class="uni-name">University of Birmingham</div><div class="uni-dept">Engineering &amp; Technology</div></div>
-              <div class="uni-bar-bg"><div class="uni-bar-fill" style="width:74%"></div></div>
-              <div class="uni-n">31</div>
-            </div>
-            <div class="uni-row">
-              <div class="uni-rank">03</div>
-              <div class="uni-info"><div class="uni-name">University of Leeds</div><div class="uni-dept">Computer Science</div></div>
-              <div class="uni-bar-bg"><div class="uni-bar-fill" style="width:67%"></div></div>
-              <div class="uni-n">28</div>
-            </div>
-            <div class="uni-row">
-              <div class="uni-rank">04</div>
-              <div class="uni-info"><div class="uni-name">University of Edinburgh</div><div class="uni-dept">Law &amp; Social Sciences</div></div>
-              <div class="uni-bar-bg"><div class="uni-bar-fill" style="width:45%"></div></div>
-              <div class="uni-n">19</div>
-            </div>
-            <div class="uni-row">
-              <div class="uni-rank">05</div>
-              <div class="uni-info"><div class="uni-name">University of Exeter</div><div class="uni-dept">Medicine &amp; Health</div></div>
-              <div class="uni-bar-bg"><div class="uni-bar-fill" style="width:36%"></div></div>
-              <div class="uni-n">15</div>
-            </div>
-          </div>
+          <div style="position:relative;height:185px"><canvas id="barChart" role="img" aria-label="Horizontal bar: Manchester 42, Birmingham 31, Leeds 28, Edinburgh 19, Exeter 15">Manchester 42, Birmingham 31, Leeds 28, Edinburgh 19, Exeter 15.</canvas></div>
         </div>
 
-        <div class="panel">
-          <div class="panel-hd">
-            <div>
-              <div class="panel-ttl">Finance</div>
-              <div class="panel-sub">Agreements and commissions</div>
+        <!-- Donut + Finance -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px">
+
+          <div class="panel">
+            <div class="phdr" style="margin-bottom:10px">
+              <div><div class="pttl">Visa Status</div><div class="psub">Current cohort</div></div>
+            </div>
+            <div style="position:relative;height:130px"><canvas id="donutChart" role="img" aria-label="Donut: Received 36, Pending 22, Refused 8">Received 36, Pending 22, Refused 8.</canvas></div>
+            <div style="display:flex;flex-direction:column;gap:5px;margin-top:10px">
+              <span style="display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--tx2)"><span style="width:8px;height:8px;border-radius:2px;background:#0A7C4E;display:inline-block"></span>Received — 36</span>
+              <span style="display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--tx2)"><span style="width:8px;height:8px;border-radius:2px;background:#D4A843;display:inline-block"></span>Pending — 22</span>
+              <span style="display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--tx2)"><span style="width:8px;height:8px;border-radius:2px;background:#B03030;display:inline-block"></span>Refused — 8</span>
             </div>
           </div>
-          <div class="fin-item">
-            <div class="fin-item-l">
-              <div class="fin-ico"><i class="fa-solid fa-file-contract"></i></div>
-              <div><div class="fin-lbl">Total Agreements</div><div class="fin-sub">Active contracts</div></div>
+
+          <div class="panel">
+            <div class="phdr" style="margin-bottom:10px">
+              <div><div class="pttl">Finance</div><div class="psub">Agreements &amp; commissions</div></div>
             </div>
-            <div class="fin-val">1</div>
-          </div>
-          <div class="fin-item">
-            <div class="fin-item-l">
-              <div class="fin-ico"><i class="fa-solid fa-coins"></i></div>
-              <div><div class="fin-lbl">Total Commissions</div><div class="fin-sub">Earned this cohort</div></div>
+            <div class="fi">
+              <div class="fil"><div class="fic"><i class="fa-solid fa-file-contract"></i></div><div><div class="fll">Agreements</div><div class="fls">Active</div></div></div>
+              <div class="fv">1</div>
             </div>
-            <div class="fin-val up">1</div>
-          </div>
-          <div class="fin-item">
-            <div class="fin-item-l">
-              <div class="fin-ico" style="background:var(--blue-bg);border-color:var(--blue-bd);color:var(--blue)"><i class="fa-solid fa-chart-line"></i></div>
-              <div><div class="fin-lbl">Projected Revenue</div><div class="fin-sub">End of cohort estimate</div></div>
+            <div class="fi">
+              <div class="fil"><div class="fic"><i class="fa-solid fa-coins"></i></div><div><div class="fll">Commissions</div><div class="fls">This cohort</div></div></div>
+              <div class="fv up">1</div>
             </div>
-            <div class="fin-val" style="color:var(--text-4)">—</div>
+            <div class="fi">
+              <div class="fil"><div class="fic" style="background:var(--bl-bg);border-color:var(--bl-bd);color:var(--bl)"><i class="fa-solid fa-chart-line"></i></div><div><div class="fll">Projected</div><div class="fls">End of cohort</div></div></div>
+              <div class="fv" style="color:var(--tx4)">—</div>
+            </div>
+            <div class="fff"><span class="fft">FY 2026</span><span class="fyb">Ledger</span></div>
           </div>
-          <div class="fin-ft">
-            <span class="fin-ft-txt">Route 2 Uni Ledger</span>
-            <span class="fy-badge">FY 2026</span>
-          </div>
+
         </div>
 
       </div>
 
       <!-- RIGHT COL -->
-      <div class="col-right">
+      <div class="cl">
 
-        <div class="panel">
-          <div class="panel-hd">
-            <div>
-              <div class="panel-ttl">Recent Activity</div>
-              <div class="panel-sub">Latest student updates</div>
-            </div>
-            <span class="panel-act">All</span>
+        <div class="dkc">
+          <div class="phdr" style="margin-bottom:12px">
+            <div><div class="pttl">Cohort Snapshot</div><div class="psub">2025–26 highlights</div></div>
           </div>
-          <div class="act-item">
-            <div class="act-ico g"><i class="fa-solid fa-passport"></i></div>
-            <div>
-              <div class="act-body"><strong>Amara Osei</strong> received CAS confirmation</div>
-              <div class="act-time">2 hours ago</div>
-            </div>
-          </div>
-          <div class="act-item">
-            <div class="act-ico a"><i class="fa-solid fa-check"></i></div>
-            <div>
-              <div class="act-body"><strong>Chen Wei</strong> accepted unconditional offer</div>
-              <div class="act-time">5 hours ago</div>
-            </div>
-          </div>
-          <div class="act-item">
-            <div class="act-ico b"><i class="fa-solid fa-envelope"></i></div>
-            <div>
-              <div class="act-body"><strong>Priya Nair</strong> received conditional offer</div>
-              <div class="act-time">Yesterday, 4:12 pm</div>
-            </div>
-          </div>
-          <div class="act-item">
-            <div class="act-ico r"><i class="fa-solid fa-triangle-exclamation"></i></div>
-            <div>
-              <div class="act-body"><strong>Visa application</strong> flagged — missing biometrics</div>
-              <div class="act-time">Yesterday, 11:40 am</div>
-            </div>
+          <div class="acs">
+            <div class="ac"><div class="acn">18</div><div class="acl">Countries</div></div>
+            <div class="ac"><div class="acn">24</div><div class="acl">Partner Unis</div></div>
+            <div class="ac"><div class="acn">12d</div><div class="acl">Avg. Time</div></div>
+            <div class="ac"><div class="acn">82%</div><div class="acl">Acceptance</div></div>
           </div>
         </div>
 
         <div class="panel">
-          <div class="panel-hd" style="margin-bottom:14px">
-            <div class="panel-ttl">Quick Stats</div>
+          <div class="phdr">
+            <div><div class="pttl">Recent Activity</div><div class="psub">Latest updates</div></div>
+            <span class="pac">All</span>
           </div>
-          <div class="qs-row">
-            <span class="qs-lbl"><i class="fa-solid fa-globe"></i> Countries represented</span>
-            <span class="qs-val">18</span>
-          </div>
-          <div class="qs-row">
-            <span class="qs-lbl"><i class="fa-solid fa-building-columns"></i> Partner universities</span>
-            <span class="qs-val">24</span>
-          </div>
-          <div class="qs-row">
-            <span class="qs-lbl"><i class="fa-solid fa-hourglass-half"></i> Avg. processing time</span>
-            <span class="qs-val">12d</span>
-          </div>
-          <div class="qs-row">
-            <span class="qs-lbl"><i class="fa-solid fa-circle-check"></i> Offer acceptance rate</span>
-            <span class="qs-val">82%</span>
-          </div>
+          <div class="ai"><div class="aic g"><i class="fa-solid fa-passport"></i></div><div><div class="atx"><strong>Amara Osei</strong> received CAS confirmation</div><div class="atm">2 hours ago</div></div></div>
+          <div class="ai"><div class="aic a"><i class="fa-solid fa-check"></i></div><div><div class="atx"><strong>Chen Wei</strong> accepted unconditional offer</div><div class="atm">5 hours ago</div></div></div>
+          <div class="ai"><div class="aic b"><i class="fa-solid fa-envelope"></i></div><div><div class="atx"><strong>Priya Nair</strong> received conditional offer</div><div class="atm">Yesterday, 4:12 pm</div></div></div>
+          <div class="ai"><div class="aic r"><i class="fa-solid fa-triangle-exclamation"></i></div><div><div class="atx"><strong>Visa application</strong> flagged — missing biometrics</div><div class="atm">Yesterday, 11:40 am</div></div></div>
+        </div>
+
+        <div class="panel">
+          <div class="phdr" style="margin-bottom:12px"><div class="pttl">Quick Stats</div></div>
+          <div class="sr"><span class="sl"><i class="fa-solid fa-globe"></i>Countries represented</span><span class="sv">18</span></div>
+          <div class="sr"><span class="sl"><i class="fa-solid fa-building-columns"></i>Partner universities</span><span class="sv">24</span></div>
+          <div class="sr"><span class="sl"><i class="fa-solid fa-hourglass-half"></i>Avg. processing time</span><span class="sv">12d</span></div>
+          <div class="sr"><span class="sl"><i class="fa-solid fa-circle-check"></i>Offer acceptance rate</span><span class="sv">82%</span></div>
         </div>
 
       </div>
@@ -598,5 +394,82 @@ main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
   </div>
 </main>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const gold='#D4A843',gold2='#E8BF6A',gold3='#F5D89A';
+const green='#0A7C4E',red='#B03030',blue='#1A54A8';
+const tx3='#6B7A99',bdr='#E2E8F4',bg='#F0F2F8';
+
+Chart.defaults.font.family="'Inter',sans-serif";
+Chart.defaults.font.size=11;
+Chart.defaults.color=tx3;
+
+function spark(id,data,color,fill){
+  new Chart(document.getElementById(id),{
+    type:'line',
+    data:{labels:data.map((_,i)=>i),datasets:[{data,borderColor:color,borderWidth:1.5,pointRadius:0,tension:.4,fill:fill?{target:'origin',above:color+'22'}:false}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{display:false},y:{display:false}},animation:{duration:600}}
+  });
+}
+spark('spk1',[35,50,40,65,55,80,70,100],gold,true);
+spark('spk2',[100,90,85,80,70,65,60,50],red,false);
+spark('spk3',[20,30,45,40,55,60,75,100],green,true);
+
+new Chart(document.getElementById('areaChart'),{
+  type:'line',
+  data:{
+    labels:['Jan','Feb','Mar','Apr','May','Jun'],
+    datasets:[
+      {label:'Applications',data:[18,26,32,28,38,42],borderColor:blue,backgroundColor:blue+'22',borderWidth:2,pointRadius:4,pointBackgroundColor:'#fff',pointBorderColor:blue,pointBorderWidth:2,tension:.4,fill:true},
+      {label:'Visas Issued',data:[4,6,8,7,10,11],borderColor:green,backgroundColor:green+'22',borderWidth:2,pointRadius:4,pointBackgroundColor:'#fff',pointBorderColor:green,pointBorderWidth:2,tension:.4,fill:true}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{mode:'index',intersect:false,backgroundColor:'#fff',titleColor:'#0B1628',bodyColor:tx3,borderColor:bdr,borderWidth:1,padding:10,cornerRadius:8}
+    },
+    scales:{
+      x:{grid:{display:false},ticks:{color:tx3,font:{size:10}},border:{display:false}},
+      y:{grid:{color:bg},ticks:{color:tx3,font:{size:10}},border:{display:false}}
+    }
+  }
+});
+
+new Chart(document.getElementById('barChart'),{
+  type:'bar',
+  data:{
+    labels:['Manchester','Birmingham','Leeds','Edinburgh','Exeter'],
+    datasets:[{label:'Applications',data:[42,31,28,19,15],backgroundColor:[gold,gold2,gold2,gold3,gold3],borderRadius:5,borderSkipped:false}]
+  },
+  options:{
+    indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{backgroundColor:'#fff',titleColor:'#0B1628',bodyColor:tx3,borderColor:bdr,borderWidth:1,padding:10,cornerRadius:8}
+    },
+    scales:{
+      x:{grid:{color:bg},ticks:{color:tx3,font:{size:10}},border:{display:false}},
+      y:{grid:{display:false},ticks:{color:'#0B1628',font:{size:10.5,weight:'500'}},border:{display:false}}
+    }
+  }
+});
+
+new Chart(document.getElementById('donutChart'),{
+  type:'doughnut',
+  data:{
+    labels:['Received','Pending','Refused'],
+    datasets:[{data:[36,22,8],backgroundColor:[green,gold,red],borderWidth:3,borderColor:'#fff',hoverOffset:5}]
+  },
+  options:{
+    cutout:'72%',responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{backgroundColor:'#fff',titleColor:'#0B1628',bodyColor:tx3,borderColor:bdr,borderWidth:1,padding:10,cornerRadius:8}
+    }
+  }
+});
+</script>
 </body>
 </html>
